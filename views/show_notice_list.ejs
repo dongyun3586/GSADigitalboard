@@ -28,17 +28,16 @@
 
 <div class="container">
   <h2>Notice List (Total counts: <%= results.length %>)</h2>
-  <p><button type="button" class="btn btn-danger"><a href="/article/show_article">Noticeboard</a></button></p>            
+  <p><button type="button" class="btn btn-danger"><a href="/article/show_article">GSA Digitalboard</a></button></p>            
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>#</th>
+        <th>Id</th>
         <th>Title</th>
         <th>Date(start)</th>
         <th>Date(end)</th>
-        <!-- <th>Image File Name</th> -->
-        <th>Place</th>
-        <th>Message</th>
+        <th class="text-center">Place</th>
+        <th class="text-center">Message</th>
         <th>Writer(e-mail)</th>
         <th>Modify Delete</th>
         <th>확인</th>
@@ -51,8 +50,7 @@
           <th><%= item.title %></th>
           <th><%= item.date_start_post.toString().substring(0, 10) %></th>
           <th><%= item.date_end_post.toString().substring(0, 10) %></th>
-          <th><%= item.place %></th>
-          <!-- <th><%= item.file_path.toString().substring(16) %></th> -->
+          <th class="text-center"><%= item.place %></th>
           <th><%= item.message %></th>
           <th><%= userEmail %></th>
           <th>

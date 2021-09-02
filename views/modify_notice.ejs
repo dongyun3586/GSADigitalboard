@@ -31,7 +31,7 @@
                 <h2 class="text-center mt-0">CREATE NEW NOTICE</h2>
                 <hr class="divider" />
 
-                <form id="contactForm" action="/notice/write" method="post" enctype="multipart/form-data">
+                <form id="contactForm" action="/notice/modify/<%= results.idarticle %>" method="post">
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0 text-center">
                             <label>게시 시작일</label>
@@ -44,14 +44,14 @@
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0">
                             <label>Title</label>
-                            <input class="form-control" id="title" name="title" type="text" placeholder="Title" required="required" data-validation-required-message="Please enter title." />
+                            <input class="form-control" id="title" name="title" type="text" value='<%= results.title %>' placeholder="Title" required="required" data-validation-required-message="Please enter title." />
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
                     <div class="control-group">
                         <div class="form-group floating-label-form-group controls mb-0">
                             <label>Message</label>
-                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."></textarea>
+                            <textarea class="form-control" id="message" name="message" rows="5" placeholder="Message" required="required" data-validation-required-message="Please enter a message."><%= results.message %></textarea>
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
@@ -62,16 +62,6 @@
                             <label><input type="checkbox" name="place" value=2 checked>기숙사</label>
                             <label><input type="checkbox" name="place" value=4 checked>학교홍보</label>
                             <p class="help-block text-danger"></p>
-                        </div>
-                    </div>
-                    <div class="control-group">
-                        <div class="form-group floating-label-form-group controls mb-0">
-                            <label>Upload Image File</label>
-                            <div class="custom-file">
-                                <input type="file" id="file" name="file" accept="image/png, image/jpg, image/jpeg" required="required">
-                            </div>
-                            ※ 업로드 이미지 사이즈는 1920 * 1080 해상도 이상을 업로드 하세요.
-                            ※ 업로드 이미지 형식은 png, jpg, jpeg만 업로드 하세요.
                         </div>
                     </div>
                     <div id="success"></div>
