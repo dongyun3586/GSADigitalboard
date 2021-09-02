@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GSA Digitalboard</title>
+  <!-- Font Awesome icons (free version)-->
+  <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+  <!-- Google fonts-->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" /> -->
+  <!-- <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" /> -->
+  <!-- Third party plugin CSS-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet" >
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- Core theme CSS (includes Bootstrap)-->
+  <link href='/stylesheets/login_style.css' rel='stylesheet' />
+</head>
+<body>
+  <!-- Navigation-->
+  <div class="container">
+    <% if(isLogin){ %>
+        <span class="psw margin-right-2rem"><a href="/users/logout">Logout (<%=userEmail%>)</a></span>
+        <span class="psw margin-right-2rem"><a href="/notice/write">Write</a></span>
+        <span class="psw margin-right-2rem"><a href="/">HOME</a></span>
+    <% } %>
+  </div>
+
+<div class="container">
+  <h2>Notice List (Total counts: <%= results.length %>)</h2>
+  <p><button type="button" class="btn btn-danger"><a href="/article/show_article">Noticeboard</a></button></p>            
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Date(start)</th>
+        <th>Date(end)</th>
+        <!-- <th>Image File Name</th> -->
+        <th>Place</th>
+        <th>Message</th>
+        <th>Writer(e-mail)</th>
+        <th>Modify Delete</th>
+        <th>확인</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% results.forEach((item)=>{ %>
+        <tr>
+          <th><%= item.idarticle %></th>
+          <th><%= item.title %></th>
+          <th><%= item.date_start_post.toString().substring(0, 10) %></th>
+          <th><%= item.date_end_post.toString().substring(0, 10) %></th>
+          <th><%= item.place %></th>
+          <!-- <th><%= item.file_path.toString().substring(16) %></th> -->
+          <th><%= item.message %></th>
+          <th><%= userEmail %></th>
+          <th>
+            <a href="/notice/modify/<%= item.idarticle %>">Modify</a>
+            <a href="/notice/delete/<%= item.idarticle %>">Delete</a>
+          </th>
+          <th>
+            <% if(item.type==='image'){ %>
+              <a href="/uploadFiles/Images/<%= item.file_path %>">이미지</a>
+            <% }else if(item.type==='video') { %>
+              <a href="/uploadFiles/videos/<%= item.file_path %>">동영상</a>
+            <% } %>
+          </th>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

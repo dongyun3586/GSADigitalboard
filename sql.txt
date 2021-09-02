@@ -1,0 +1,20 @@
+show databases;
+use gsa_digitalboard_db;
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '1111';
+
+CREATE TABLE `article` (
+   `idarticle` int NOT NULL AUTO_INCREMENT,
+   `title` varchar(100) NOT NULL,
+   `date_start_post` date NOT NULL,
+   `date_end_post` date NOT NULL,
+   `place` int NOT NULL,
+   `file_path` varchar(200) NOT NULL,
+   `writer_email` varchar(100) NOT NULL,
+   `message` varchar(200) DEFAULT NULL,
+   `type` varchar(10) NOT NULL DEFAULT 'image',
+   PRIMARY KEY (`idarticle`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8
+
+SELECT * FROM article;
+
